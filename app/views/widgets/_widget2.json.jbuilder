@@ -1,2 +1,2 @@
 json.extract! widget, :id, :name
-json.url widget_url(widget, format: :json)
+json.template 'modified index, should not contain anything but name and id'

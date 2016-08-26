@@ -4,9 +4,36 @@ class WidgetsController < ApplicationController
   # GET /widgets
   # GET /widgets.json
   def index
+    # This one demonstrates standard usage.
+    @widgets = Widget.all
+    paginate @widgets
+  end
+
+  def index2
+    # This one shows that it works great as long as you render using the expected template
     @widgets = Widget.all
     paginate @widgets, template: 'widgets/index2'
   end
+
+  def index3
+    # This one shows that it looks for index3 template even though you specified index2
+    @widgets = Widget.all
+    paginate @widgets, template: 'widgets/index2'
+  end
+
+  def index4
+    # This one shows that it ignores the template altogether when you use the json: option (which I am confident is just Rails' behavior, but is scary because people might use this as an attempted fix for the index3 problem and not notice they are exposing more information than they intended)
+    @widgets = Widget.all
+    paginate json: @widgets, template: 'widgets/index2'
+  end
+
+  def index5
+    # This one shows that rails will use the template you specified without pagination
+    @widgets = Widget.all
+    render template: 'widgets/index2'
+  end
+
+
 
   # GET /widgets/1
   # GET /widgets/1.json

@@ -25,3 +25,13 @@
 <br>
 
 <%= link_to 'New Widget', new_widget_path %>
+
+<br/><br/>
+
+Make sure there is at least one widget above, then check the API output for:
+<br/><br/>
+<%= link_to widgets_path(format: :json), widgets_path(format: :json) %> (normal usage, works)<br/>
+<%= link_to index2_widgets_path(format: :json), index2_widgets_path(format: :json) %> (nothing strange if you supply a template as long as it is the 'convention')<br/>
+<%= link_to index3_widgets_path(format: :json), index3_widgets_path(format: :json) %> (errors, looking for the conventional template, even though you told it to look for another one)<br/>
+<%= link_to index4_widgets_path(format: :json), index4_widgets_path(format: :json) %> (problematic issue since people may read docs and try this as a fix for index3)<br/>
+<%= link_to index5_widgets_path(format: :json), index5_widgets_path(format: :json) %> (rails will find the specified template and use it without api-pagination)<br/>
