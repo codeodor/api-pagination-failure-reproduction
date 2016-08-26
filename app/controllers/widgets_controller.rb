@@ -5,6 +5,7 @@ class WidgetsController < ApplicationController
   # GET /widgets.json
   def index
     @widgets = Widget.all
+    paginate @widgets, template: 'widgets/index2'
   end
 
   # GET /widgets/1
